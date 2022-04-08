@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import HomeComponent from "./components/home/home.component";
+import LoginComponent from "./components/login/login.component";
+import NavbarComponent from "./components/navbar/navbar.component";
+import PlpComponent from "./components/plp/plp.component";
+import { cartConsumer } from "./contexts/cartContext";
+import RegisterComponent from "./components/register/register.component";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter>
+      {cartConsumer(NavbarComponent)}
+        <Routes>
+          <Route path="/" element={<LoginComponent />} />
+          <Route path="/home" element={<HomeComponent />} />
+          <Route path="/products" element={<PlpComponent />} />
+          <Route path="/login" element={<LoginComponent />} />
+          <Route path="/register" element={<RegisterComponent />} />
+        </Routes>
+      </BrowserRouter>
+      <div
+        className="fluid-container p-2"
+        style={{ backgroundColor: "lightgray", textAlign: "center" }}
+      >
+        Copyright &#169; 2011-2018 Sabka Bazaar Grocery Supplies Pvt Ltd.
+      </div>
+    </>
   );
 }
 
